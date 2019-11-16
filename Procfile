@@ -1,0 +1,1 @@
+web: gunicorn Eddie.wsgi --log-file

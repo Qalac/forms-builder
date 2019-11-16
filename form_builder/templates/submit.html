@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DECIDE</title>
+</head>
+<body>
+    <div align='center'>
+        -------------------------------------------------------------------------------<p></p>
+        <form action="{% url 'add' %}" method="post">{% csrf_token %}
+            <input type="submit" value="ADD ANOTHER QUESTION">
+        </form><p></p>
+        <form action="{% url 'index' %}" method="post">{% csrf_token %}
+            <input type="submit" value="ADD ANOTHER SURVEY">
+        </form><p></p>
+        <form action="" method="post">{% csrf_token %}
+            <input type="submit" value="FINISH">
+        </form>
+    </div>
+</body>
+</html>
