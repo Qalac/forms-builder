@@ -9,8 +9,13 @@
             <h2>GIVE YOUR SURVEY A TITLE</h2>
             {{form.as_p}}
             <input type="submit" value="CREATE SURVEY"><BR></BR>
-            ------------------------------------------------------------------------------------------------
         </form>
+        or<p></p>
+        <form action="{% url 'test' %}" method="post">{% csrf_token %}
+            <input type="submit" value="EDIT EXISTING SURVEY"><BR></BR>
+        </form>
+        ------------------------------------------------------------------------------------------------
+
     </div>
 </body>
 </html>

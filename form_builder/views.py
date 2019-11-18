@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import *
 from .models import survey, field
+from django.views.generic import UpdateView, CreateView, View
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -39,3 +41,18 @@ def test(request):
     queryField = field.objects.values()
     return render(request, template_name, {'survey': querySurvey, 'field': queryField })
 
+class EditSurvey(UpdateView):
+    model = survey
+    fields = '__all__'
+    template_name_suffix = '_update_form'
+    pk_url_kwarg = 'survey_id'
+    context_object_name = 'survey'
+    success_url = reverse_lazy('test')
+
+class EditField(UpdateView):
+    model = field
+    fields = '__all__'
+    template_name_suffix = '_update_form'
+    pk_url_kwarg = 'field_id'
+    context_object_name = 'field'
+    success_url = reverse_lazy('test')
