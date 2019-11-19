@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-MODE = 'D'
+MODE = 'DE'
 
 if MODE == 'DEV':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Eddie.settings.development")
