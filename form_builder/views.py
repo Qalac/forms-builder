@@ -39,7 +39,8 @@ def test(request):
     template_name = 'test.html'
     querySurvey = survey.objects.all()
     queryField = field.objects.values()
-    return render(request, template_name, {'survey': querySurvey, 'field': queryField })
+    widget = TypeForm()
+    return render(request, template_name, {'survey': querySurvey, 'field': queryField, 'widget': widget })
 
 class EditSurvey(UpdateView):
     model = survey

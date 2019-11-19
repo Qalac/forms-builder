@@ -9,13 +9,33 @@
             <h1>{{q.survey_title}} | <a = href="{% url 'edit_survey' q.id %}" role="button">EDIT</a></h1>
             <form action="" method="post">{% csrf_token %}
             {% for m in field %}
-                {% if m.survey_id == q.id%}
-                    <table>
-                        <tr>
-                            <td>{{m.question_text}}:</td>
-                            <td><input type="text" name="" id=""> | </td>
-                            <td><a = href="{% url 'edit_field' m.id %}" role="button">EDIT</a></h1></td>
-                        </tr>
+                {% if m.survey_id == q.id %}
+                <table>
+                    {% if m.widget == 'TEXT' %}
+                            <tr>
+                                <td>{{m.question_text}}:</td>
+                                <td>{{widget.text}} | </td>
+                                <td><a = href="{% url 'edit_field' m.id %}" role="button">EDIT</a></h1></td>
+                            </tr>
+                    {% elif m.widget == 'SELECT_LIST' %}
+                            <tr>
+                                <td>{{m.question_text}}:</td>
+                                <td>{{widget.single}} | </td>
+                                <td><a = href="{% url 'edit_field' m.id %}" role="button">EDIT</a></h1></td>
+                            </tr>
+                    {% elif m.widget == 'CHECK_BOX' %}
+                            <tr>
+                                <td>{{m.question_text}}:</td>
+                                <td>{{widget.multiple}}</td>
+                                <td>| <a = href="{% url 'edit_field' m.id %}" role="button">EDIT</a></h1></td>
+                            </tr>
+                    {% elif m.widget == 'RADIO_BUTTON' %}
+                            <tr>
+                                <td>{{m.question_text}}:</td>
+                                <td>{{widget.radio}}</td>
+                                <td>| <a = href="{% url 'edit_field' m.id %}" role="button">EDIT</a></h1></td>
+                            </tr>
+                    {% endif %}
                     </table>
                 {% endif %}
             {% endfor%}
